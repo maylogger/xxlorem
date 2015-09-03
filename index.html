@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <title>XXLOREM.js 一用就憤怒的中文假字生產器</title>
+
+    <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+    <style>
+      html, body {
+        background: #000;
+        background: -moz-linear-gradient(top, #000 0%, #E9432C 100%);
+        background: -webkit-gradient(linear, left top, left bottom, from(0%,#000), to(100%,#E9432C)) fixed;
+        background: -webkit-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+        background: -o-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+        background: -ms-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+        background: linear-gradient(to bottom, #000 0%,#E9432C 100%) fixed;
+      }
+      body,p {
+        font-size: 18px;
+        line-height: 26px;
+      }
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+      a:hover,a:focus,a:visited {color: black;}
+      code {font-size: 14px; word-break:break-all;}
+      .btn,.btn:hover,.btn:active,.btn:focus {outline: none;}
+      .panel a {color: black;}
+      .jumbotron { background-color: black;}
+      .jumbotron h1 {color: #E9432C;}
+      .introduce p,.introduce h4,.introduce blockquote {color: white;}
+      .introduce a:hover,.introduce a:focus,.introduce a:visited {color: black;}
+      .help-block {font-size: 16px;}
+      .text-white {color: white;}
+    </style>
+  </head>
+  <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '749690965154333',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>XXLOREM.js<br /><small>一用就憤怒的中文假字生產器</small></h1>
+        <div class="fb-like" data-share="true"></div>
+      </div>
+    </div>
+    <div class="container" style="padding-top: 40px;">
+      <div class="row">
+        <div class="col-md-4 col-md-push-8 col-xs-12 introduce">
+          <h4>這是什麼？</h4>
+          <p>
+            <strong>XXLOREM.js</strong> 是一款針對 <strong>前端設計師</strong> 打造的 <strong>中文假字生產器</strong>。
+          </p>
+          <hr />
+          <h4>假字是什麼？能吃嗎？</h4>
+          <p>
+            假字是讓設計師用來填充版面的內容物，作為提案和設計過程中的暫時內容，而非讓大眾閱讀。
+          </p>
+          <hr />
+          <h4>語料的來源是？</h4>
+          <p>
+            XXLOREM.js 的語料使用 <a href="http://fb.com/kobedesigner" target="_blank"><strong>靠北設計師</strong></a> 的匿名靠北內容。我們從中篩選了一些內容，並以程式隨機打亂後重新組合，作為假字使用。
+          </p>
+          <hr />
+          <h4>有開源嗎？</h4>
+          <p>
+            你可以到 <a href="https://github.com/unfoldgroup/xxlorem" target="_blank"><strong>Github</strong></a> fork 這支 Plugin，歡迎任意複製、更改。
+          </p>
+        </div>
+        <div class="col-md-8 col-md-pull-4 col-xs-12 col-xs-offset-0">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <mark>
+                首先，讓我們先來看看 XXLOREM.js 的實際效果：
+              </mark>
+              <br />
+              <h3 class="sample-title xx"></h3>
+              <p class="sample-content xx(3p,<br><br>)"></p>
+              <button class="btn btn-danger btn-lg btn-block" id="reload">請再多靠北一些</button>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>使用方法</h2>
+              <hr />
+              <p>
+                XXLOREM.js 是以 jQuery 為基礎編寫，使用時需先引用 <a href="https://jquery.com/" target="_blank">jQuery</a><br />
+                請在你的網頁加上以下語法：
+              </p>
+              <div class="well well-sm">
+                <code>
+                  &lt;script src=&quot;//code.jquery.com/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+                </code><br />
+                <code>
+                  &lt;script src=&quot;//xxlorem.unfoldgroup.com/plugin/xxlorem-1.0.js&quot;&gt;&lt;/script&gt;
+                </code>
+              </div>
+              <hr />
+              <p>
+                XXLOREM.js 提供了兩種方法，讓你可以快速將假字套用到頁面中：
+              </p>
+              <h5 id="method-1">
+                <span class="glyphicon glyphicon-fire"></span>
+                方法一：以 jQuery 套用假字於特定物件上
+              </h5>
+              <div class="well well-sm">
+                <code>
+                  $(&#039;.example&#039;).xxlorem();
+                </code><br />
+                <code>
+                  $(&#039;.example&#039;).xxlorem(3);
+                </code>
+              </div>
+              <h5 id="method-2">
+                <span class="glyphicon glyphicon-fire"></span>
+                方法二：直接在想要填入假字的物件加上 <kbd>class="xx"</kbd>
+              </h5>
+              <div class="well well-sm">
+                <code>
+                  &lt;p class=&quot;xx&quot;&gt;&lt;/p&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(3)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+
+              <hr />
+              <p>
+                以上兩種方法，都能填入假字，並可指定句子的產生數量，實際效果如下：
+                <blockquote>
+                  <p class="xx(3)"></p>
+                </blockquote>
+              </p>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>參數設置</h2>
+              <hr />
+              <p>
+                前述的兩種使用方法，都可以藉由設置不同的參數，來產生不同長度和類型的假字。
+              </p>
+              <p>
+                採用 <a href="#method-1">方法一</a> 時，您可以用 <code>$(elment).xxlorem(params)</code> 方式來設置參數；在 <a href="#method-2">方法二</a> 中，則可以用增加括弧和數值的方式 <code>&lt;p class=&quot;xx(params)&quot;&gt;&lt;/p&gt;</code> 來設置參數。
+              </p>
+              <p>
+                XXLOREM.js 提供了多種類型的假字如下表：
+              </p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <td class="text-center">類型</td>
+                    <td>參數語法</td>
+                    <td>簡寫</td>
+                    <td>說明</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">文字</td>
+                    <td>
+                      <code>word</code> , <code>words</code>
+                    </td>
+                    <td>
+                      <code>w</code>
+                    </td>
+                    <td>
+                      產生一個或多個文字
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">句子</td>
+                    <td>
+                      <code>sentence</code> , <code>sentences</code>
+                    </td>
+                    <td>
+                      <code>s</code>
+                    </td>
+                    <td>
+                      產生一個或多個句子
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">段落</td>
+                    <td>
+                      <code>paragraph</code> , <code>paragraphs</code>
+                    </td>
+                    <td>
+                      <code>p</code>
+                    </td>
+                    <td>
+                      產生一個或多個段落文字
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">姓名</td>
+                    <td>
+                      <code>name</code>
+                    </td>
+                    <td>
+                      <code>n</code>
+                    </td>
+                    <td>
+                      產生一個假姓名
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">姓</td>
+                    <td>
+                      <code>last name</code>
+                    </td>
+                    <td>
+                      <code>ln</code>
+                    </td>
+                    <td>
+                      產生一個假姓氏
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">名</td>
+                    <td>
+                      <code>first name</code>
+                    </td>
+                    <td>
+                      <code>fn</code>
+                    </td>
+                    <td>
+                      產生一個假名字
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">姓名(拼音)</td>
+                    <td>
+                      <code>name pinyin</code>
+                    </td>
+                    <td>
+                      <code>np</code>
+                    </td>
+                    <td>
+                      產生一個拼音假姓名
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">姓(拼音)</td>
+                    <td>
+                      <code>last name pinyin</code>
+                    </td>
+                    <td>
+                      <code>lnp</code>
+                    </td>
+                    <td>
+                      產生一個拼音假姓氏
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">名(拼音)</td>
+                    <td>
+                      <code>first name pinyin</code>
+                    </td>
+                    <td>
+                      <code>fnp</code>
+                    </td>
+                    <td>
+                      產生一個拼音假名字
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Email</td>
+                    <td>
+                      <code>email</code> , <code>mail</code>
+                    </td>
+                    <td>
+                      <code>e</code> , <code>m</code>
+                    </td>
+                    <td>
+                      產生一個假 email
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                在一般的狀態下，您只需使用到<strong>一個參數</strong>即可。
+              </p>
+              <p>
+                您可以僅使用一個參數，就完成設置假字的<strong>類型</strong>，或假句子的<strong>長度</strong>。此外，您也可以用<strong>縮寫</strong>的方式，同時設置類型和長度，例如 <code>xx(3p)</code> 即代表生成三個段落的文字內容。
+              </p>
+              <p>
+                在設定非數值參數時，若您使用 jQuery 套用假字，參數需以單引號或雙引號括住；若是直接寫在 HTML 標籤中，則不需要使用引號，例如：
+              </p>
+              <div class="well well-sm">
+                <code>
+                  $(elment).xxlorem(&#039;name&#039;);
+                </code><br />
+                <code>
+                  $(elment).xxlorem(5);
+                </code><br />
+                <code>
+                  &lt;span class=&quot;xx(email)&quot;&gt;&lt;/span&gt;
+                </code><br />
+                <code>
+                  &lt;span class=&quot;xx(last name)&quot;&gt;&lt;/span&gt;
+                </code><br />
+                <code>
+                  &lt;span class=&quot;xx(3p)&quot;&gt;&lt;/span&gt;
+                </code>
+              </div>
+
+              <p>
+                當你在設定多個文字、句子、段落時，則可以使用到<strong>兩個參數</strong>，這兩個參數分別為 <strong>假字類型</strong> 和 <strong>產生長度</strong>。請以半形逗號隔開不同參數，參數的順序將不影響結果；若直接寫在 HTML 標籤時，逗號前後不能含有空白：
+              </p>
+              <div class="well well-sm">
+                <code>
+                  $(elment).xxlorem(&#039;sentences&#039;, 10);
+                </code><br />
+                <code>
+                  $(elment).xxlorem(5, &#039;paragraphs&#039;);
+                </code><br />
+                <code>
+                  &lt;span class=&quot;xx(words,19)&quot;&gt;&lt;/span&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(3,p)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p>
+                在產生段落 <small>(paragraphs)</small> 時，你將可彈性的使用<strong>第三個參數</strong>。
+              </p>
+              <p>
+                第三個參數為設置段落時，允許改變換行符號，預設的換行符號為 <code>\n\n</code>，您可以替換為其它的符號，例如 <code>&lt;br&gt;&lt;br&gt;</code> 或 <code>&lt;hr&gt;</code>：
+              </p>
+              <div class="well well-sm">
+                <code>
+                  $(elment).xxlorem(3, &#039;paragraphs&#039;, &#039;&lt;br&gt;&lt;br&gt;&#039;);
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(6,p,&lt;hr&gt;)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p>
+                雖然如此，但我們建議以縮寫、僅使用兩個參數的方式，來設置段落：
+              </p>
+              <div class="well well-sm">
+                <code>
+                  $(elment).xxlorem(&#039;3p&#039;, &#039;&lt;br&gt;&lt;br&gt;&#039;);
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(6p,&lt;hr&gt;)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>使用範例</h2>
+              <hr />
+
+              <h4>1 個字：</h4>
+              <blockquote>
+                <p class="xx(word)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(word)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(w)</samp>、<samp>xx(1w)</samp>、<samp>xx(1 word)</samp>
+              </p>
+              <hr />
+
+              <h4>我需要 19 個字：</h4>
+              <blockquote>
+                <p class="xx(19 words)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(19 words)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(19w)</samp>、<samp>xx(words,19)</samp>、<samp>xx(19_word)</samp>、<samp>xx(19-words)</samp>
+              </p>
+              <hr />
+
+              <h4>麻煩隨便來個句子：</h4>
+              <blockquote>
+                <p class="xx"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(sentence)</samp>、<samp>xx(1)</samp>、<samp>xx(s)</samp>、<samp>xx(1s)</samp>
+              </p>
+              <hr />
+
+              <h4>我需要大概 3 句文字：</h4>
+              <blockquote>
+                <p class="xx(3s)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(3s)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(sentences,3)</samp>、<samp>xx(3,s)</samp>、<samp>xx(3-sentences)</samp>
+              </p>
+              <hr />
+
+              <h4>這邊來一個段落：</h4>
+              <blockquote>
+                <p class="xx(p)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(p)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(paragraph)</samp>、<samp>xx(1p)</samp>
+              </p>
+              <hr />
+
+              <h4>這篇文章需要 3 段，並把換行符號改為&lt;br&gt;&lt;br&gt;：</h4>
+              <blockquote>
+                <p class="xx(3p,<br><br>)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(3p,&lt;br&gt;&lt;br&gt;)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(3,p,&lt;br&gt;&lt;br&gt;)</samp>、<samp>xx(paragraphs,3,&lt;br&gt;&lt;br&gt;)</samp>
+              </p>
+              <hr />
+
+              <h4>來個人名：</h4>
+              <blockquote>
+                <p class="xx(name)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(name)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(n)</samp>
+              </p>
+              <hr />
+
+              <h4>來個拼音的假姓名：</h4>
+              <blockquote>
+                <p class="xx(name pinyin)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(name pinyin)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(np)</samp>、<samp>xx(name-pinyin)</samp>
+              </p>
+              <hr />
+
+              <h4>來個 Email</h4>
+              <blockquote>
+                <p class="xx(email)"></p>
+              </blockquote>
+              <div class="well well-sm">
+                <span class="label label-success">Code</span>
+                <code>
+                  &lt;p class=&quot;xx(email)&quot;&gt;&lt;/p&gt;
+                </code>
+              </div>
+              <p class="help-block">
+                你也可以這樣寫：<samp>xx(e)</samp>、<samp>xx(mail)</samp>、<samp>xx(m)</samp>
+              </p>
+
+            </div>
+          </div>
+
+
+          <p class="text-center text-white" style="margin: 80px 0;">
+            © 2015 <a href="http://fb.com/unfoldgroup" target="_blank">Unfoldgroup 超展開</a> 憤怒出品
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="/javascripts/xxlorem.js"></script>
+    <script>
+      $('#reload').bind('click', function() {
+        $('.sample-title').xxlorem();
+        $('.sample-content').xxlorem('3p', '<br><br>');
+      });
+    </script>
+</html>
