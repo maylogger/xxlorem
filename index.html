@@ -34,18 +34,61 @@
       }
       a:hover,a:focus,a:visited {color: black;}
       code {font-size: 14px; word-break:break-all;}
+      marquee {
+        width: 100%;
+        font-size: 26px;
+        padding: 10px 0;
+        color: rgba(255,0,0,.8);
+      }
+      .marquees {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
       .btn,.btn:hover,.btn:active,.btn:focus {outline: none;}
       .panel {
         -webkit-box-shadow: none;
         box-shadow: none;
       }
       .panel a {color: black;}
-      .jumbotron { background-color: black;}
+      .jumbotron {
+        position: relative;
+        background-color: black;
+        background-image: url('images/fire.gif');
+        background-repeat: repeat-x;
+        background-position: 50% 140px;
+        background-size: contain;
+      }
       .jumbotron h1 {color: #E9432C;}
+      .main {position: relative;}
+      .introduce {margin-bottom: 40px;}
       .introduce p,.introduce h4,.introduce blockquote {color: white;}
       .introduce a:hover,.introduce a:focus,.introduce a:visited {color: black;}
       .help-block {font-size: 16px;}
       .text-white {color: white;}
+      #cursor {
+        cursor: none;
+        width: 48px;
+        height: 48px;
+        background: url("images/cursor.gif") no-repeat left top;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        margin-left: 30px;
+        margin-top: 30px;
+        display: none;
+      }
+      .fb-box {
+        position: absolute;
+        top: -40px;
+        left: 15px;
+      }
     </style>
   </head>
   <body>
@@ -66,11 +109,16 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-
     <div class="jumbotron">
+      <div class="marquees">
+        <marquee class="xx" scrollamount="10" loop="0"></marquee>
+        <marquee class="xx" scrollamount="5" loop="0"></marquee>
+        <marquee class="xx" scrollamount="3" loop="0"></marquee>
+        <marquee class="xx(2)" scrollamount="18" loop="0"></marquee>
+        <marquee class="xx(2)" scrollamount="22" loop="0"></marquee>
+      </div>
       <div class="container">
         <h1>XXLOREM.js<br /><small>一用就憤怒的中文假字生產器</small></h1>
-        <div class="fb-like" data-share="true"></div>
       </div>
     </div>
     <div class="container" style="padding-top: 40px;">
@@ -96,7 +144,10 @@
             你可以到 <a href="https://github.com/unfoldgroup/xxlorem" target="_blank"><strong>Github</strong></a> fork 這支 Plugin，歡迎任意複製、更改。
           </p>
         </div>
-        <div class="col-md-8 col-md-pull-4 col-xs-12 col-xs-offset-0">
+        <div class="col-md-8 col-md-pull-4 col-xs-12 col-xs-offset-0 main">
+          <div class="fb-box">
+            <div class="fb-like" data-share="true"></div>
+          </div>
           <div class="panel panel-default">
             <div class="panel-body">
               <mark>
@@ -535,12 +586,17 @@
       </div>
     </div>
 
+    <div id="cursor"></div>
+
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="javascripts/xxlorem.js"></script>
     <script>
       $('#reload').bind('click', function() {
         $('.sample-title').xxlorem();
         $('.sample-content').xxlorem('3p', '<br><br>');
+      });
+      $('body').mousemove(function(e) {
+        $('#cursor').show().css('left', e.pageX).css('top', e.pageY);
       });
     </script>
 </html>
