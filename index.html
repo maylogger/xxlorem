@@ -69,22 +69,6 @@
         top: -40px;
         left: 15px;
       }
-      #cursor-wrapper{
-        position:absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        z-index: 10;
-        display: none;
-      }
-      #cursor-wrapper div{
-        padding: 5px;
-        border-radius: 50%;
-        background: navy;
-        position: absolute;
-        z-index: 200;
-      }
       @media screen and (min-width: 960px) {
         html, body {
           background: #E9432C;
@@ -94,9 +78,6 @@
           background: -o-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
           background: -ms-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
           background: linear-gradient(to bottom, #000 0%,#E9432C 100%) fixed;
-        }
-        #cursor-wrapper {
-          display: block;
         }
       }
     </style>
@@ -605,8 +586,6 @@
       </div>
     </div>
 
-    <div id="cursor-wrapper"></div>
-
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="javascripts/xxlorem.js"></script>
     <script>
@@ -614,53 +593,6 @@
         $('.sample-title').xxlorem();
         $('.sample-content').xxlorem('3p', '<br><br>');
       });
-
-      isMobile = function() {
-        return navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/BlackBerry/);
-      };
-
-      if (!isMobile()) {
-
-        var mouseX = undefined;
-        var mouseY = undefined;
-
-        $(document).scroll(function() {
-          var x = window.mouseX;
-          var y = mouseY + $('body').scrollTop();
-          var newDiv = $("<div></div>");
-          newDiv.css({
-             'left' : x,
-             'top' : y,
-             'background' : 'url(images/cursor.gif)',
-             'width' : '48px',
-             'height' : '48px'
-          });
-          $('#cursor-wrapper').append(newDiv);
-          newDiv.fadeOut(500, function(){
-            $(this).remove();
-          });
-        });
-
-        $('html').mousemove(function(e) {
-          var x = e.pageX - this.offsetLeft;
-          var y = e.pageY - this.offsetTop;
-          var newDiv = $("<div></div>");
-          newDiv.css({
-             'left' : x,
-             'top' : y,
-             'background' : 'url(images/cursor.gif)',
-             'width' : '48px',
-             'height' : '48px'
-          });
-          $('#cursor-wrapper').append(newDiv);
-          newDiv.fadeOut(500, function(){
-            $(this).remove();
-          });
-          window.mouseX = x;
-          window.mouseY = e.clientY;
-        });
-
-      }
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
