@@ -65,19 +65,25 @@
       .help-block {font-size: 16px;}
       .text-white {color: white;}
       .help-block {word-break:break-all;}
-      #cursor {
-        cursor: none;
-        width: 48px;
-        height: 48px;
-        background: url("images/cursor.gif") no-repeat left top;
+      .fb-box {
         position: absolute;
+        top: -40px;
+        left: 15px;
+      }
+      #cursor-wrapper{
+        position:absolute;
         top: 0;
         left: 0;
-        z-index: 10000;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        display: none;
+        width:100%;
+        height:100%;
+        z-index:10;
+      }
+      #cursor-wrapper div{
+        padding:5px;
+        border-radius:50%;
+        background:navy;
+        position:absolute;
+        z-index:200;
       }
       @media screen and (min-width: 960px) {
         html, body {
@@ -89,37 +95,10 @@
           background: -ms-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
           background: linear-gradient(to bottom, #000 0%,#E9432C 100%) fixed;
         }
-        #cursor {
-          top: -100%;
-          left: -100%;
-          display: block;
-        }
-      }
-      .fb-box {
-        position: absolute;
-        top: -40px;
-        left: 15px;
       }
     </style>
   </head>
   <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '749690965154333',
-          xfbml      : true,
-          version    : 'v2.4'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div class="jumbotron">
       <div class="marquees">
         <marquee class="xx" scrollamount="10" loop="0"></marquee>
@@ -597,22 +576,69 @@
       </div>
     </div>
 
-    <div id="cursor"></div>
+    <div id="cursor-wrapper"></div>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="javascripts/xxlorem.js"></script>
     <script>
-      var mouseY = undefined;
       $('#reload').bind('click', function() {
         $('.sample-title').xxlorem();
         $('.sample-content').xxlorem('3p', '<br><br>');
       });
-      $('body').mousemove(function(e) {
-        $('#cursor').css('left', e.pageX).css('top', e.pageY);
+
+      var mouseX = undefined;
+      var mouseY = undefined;
+
+      $(document).scroll(function() {
+        var x = window.mouseX;
+        var y = mouseY + $('body').scrollTop();
+        var newDiv = $("<div></div>");
+        newDiv.css({
+           'left' : x,
+           'top' : y,
+           'background' : 'url(images/cursor.gif)',
+           'width' : '48px',
+           'height' : '48px'
+        });
+        $('#cursor-wrapper').append(newDiv);
+        newDiv.fadeOut(500, function(){
+          $(this).remove();
+        });
+      });
+
+      $('html').mousemove(function(e) {
+        var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
+        var newDiv = $("<div></div>");
+        newDiv.css({
+           'left' : x,
+           'top' : y,
+           'background' : 'url(images/cursor.gif)',
+           'width' : '48px',
+           'height' : '48px'
+        });
+        $('#cursor-wrapper').append(newDiv);
+        newDiv.fadeOut(500, function(){
+          $(this).remove();
+        });
+        window.mouseX = x;
         window.mouseY = e.clientY;
       });
-      $(document).scroll(function(e) {
-        $('#cursor').css('top', mouseY + $('body').scrollTop());
-      });
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '749690965154333',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
     </script>
 </html>
