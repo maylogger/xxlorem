@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
     <style>
       html, body {
-        background: #000;
+        background: #E9432C;
         background: -moz-linear-gradient(top, #000 0%, #E9432C 100%);
         background: -webkit-gradient(linear, left top, left bottom, from(0%,#000), to(100%,#E9432C)) fixed;
         background: -webkit-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
@@ -80,9 +80,14 @@
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
-        margin-left: 30px;
-        margin-top: 30px;
         display: none;
+      }
+      @media screen and (min-width: 960px) {
+        #cursor {
+          top: -100%;
+          left: -100%;
+          display: block;
+        }
       }
       .fb-box {
         position: absolute;
@@ -596,7 +601,7 @@
         $('.sample-content').xxlorem('3p', '<br><br>');
       });
       $('body').mousemove(function(e) {
-        $('#cursor').show().css('left', e.pageX).css('top', e.pageY);
+        $('#cursor').css('left', e.pageX).css('top', e.pageY);
       });
     </script>
 </html>
