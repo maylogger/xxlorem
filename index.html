@@ -54,8 +54,7 @@
         background-color: black;
         background-image: url('images/fire.gif');
         background-repeat: repeat-x;
-        background-position: 50% 140px;
-        background-size: contain;
+        background-position: 50% 130px;
       }
       .jumbotron h1 {color: #E9432C;}
       .main {position: relative;}
@@ -74,17 +73,17 @@
         position:absolute;
         top: 0;
         left: 0;
-        width:100%;
-        height:100%;
-        z-index:10;
+        width: 100%;
+        height: 0;
+        z-index: 10;
         display: none;
       }
       #cursor-wrapper div{
-        padding:5px;
-        border-radius:50%;
-        background:navy;
-        position:absolute;
-        z-index:200;
+        padding: 5px;
+        border-radius: 50%;
+        background: navy;
+        position: absolute;
+        z-index: 200;
       }
       @media screen and (min-width: 960px) {
         html, body {
@@ -103,6 +102,23 @@
     </style>
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '749690965154333',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="jumbotron">
       <div class="marquees">
         <marquee class="xx" scrollamount="10" loop="0"></marquee>
@@ -590,59 +606,51 @@
         $('.sample-content').xxlorem('3p', '<br><br>');
       });
 
-      var mouseX = undefined;
-      var mouseY = undefined;
-
-      $(document).scroll(function() {
-        var x = window.mouseX;
-        var y = mouseY + $('body').scrollTop();
-        var newDiv = $("<div></div>");
-        newDiv.css({
-           'left' : x,
-           'top' : y,
-           'background' : 'url(images/cursor.gif)',
-           'width' : '48px',
-           'height' : '48px'
-        });
-        $('#cursor-wrapper').append(newDiv);
-        newDiv.fadeOut(500, function(){
-          $(this).remove();
-        });
-      });
-
-      $('html').mousemove(function(e) {
-        var x = e.pageX - this.offsetLeft;
-        var y = e.pageY - this.offsetTop;
-        var newDiv = $("<div></div>");
-        newDiv.css({
-           'left' : x,
-           'top' : y,
-           'background' : 'url(images/cursor.gif)',
-           'width' : '48px',
-           'height' : '48px'
-        });
-        $('#cursor-wrapper').append(newDiv);
-        newDiv.fadeOut(500, function(){
-          $(this).remove();
-        });
-        window.mouseX = x;
-        window.mouseY = e.clientY;
-      });
-
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '749690965154333',
-          xfbml      : true,
-          version    : 'v2.4'
-        });
+      isMobile = function() {
+        return navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/BlackBerry/);
       };
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+      if (!isMobile()) {
+
+        var mouseX = undefined;
+        var mouseY = undefined;
+
+        $(document).scroll(function() {
+          var x = window.mouseX;
+          var y = mouseY + $('body').scrollTop();
+          var newDiv = $("<div></div>");
+          newDiv.css({
+             'left' : x,
+             'top' : y,
+             'background' : 'url(images/cursor.gif)',
+             'width' : '48px',
+             'height' : '48px'
+          });
+          $('#cursor-wrapper').append(newDiv);
+          newDiv.fadeOut(500, function(){
+            $(this).remove();
+          });
+        });
+
+        $('html').mousemove(function(e) {
+          var x = e.pageX - this.offsetLeft;
+          var y = e.pageY - this.offsetTop;
+          var newDiv = $("<div></div>");
+          newDiv.css({
+             'left' : x,
+             'top' : y,
+             'background' : 'url(images/cursor.gif)',
+             'width' : '48px',
+             'height' : '48px'
+          });
+          $('#cursor-wrapper').append(newDiv);
+          newDiv.fadeOut(500, function(){
+            $(this).remove();
+          });
+          window.mouseX = x;
+          window.mouseY = e.clientY;
+        });
+
+      }
     </script>
 </html>
