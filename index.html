@@ -17,12 +17,6 @@
     <style>
       html, body {
         background: #E9432C;
-        background: -moz-linear-gradient(top, #000 0%, #E9432C 100%);
-        background: -webkit-gradient(linear, left top, left bottom, from(0%,#000), to(100%,#E9432C)) fixed;
-        background: -webkit-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
-        background: -o-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
-        background: -ms-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
-        background: linear-gradient(to bottom, #000 0%,#E9432C 100%) fixed;
       }
       body,p {
         font-size: 18px;
@@ -84,6 +78,15 @@
         display: none;
       }
       @media screen and (min-width: 960px) {
+        html, body {
+          background: #E9432C;
+          background: -moz-linear-gradient(top, #000 0%, #E9432C 100%);
+          background: -webkit-gradient(linear, left top, left bottom, from(0%,#000), to(100%,#E9432C)) fixed;
+          background: -webkit-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+          background: -o-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+          background: -ms-linear-gradient(top, #000 0%,#E9432C 100%) fixed;
+          background: linear-gradient(to bottom, #000 0%,#E9432C 100%) fixed;
+        }
         #cursor {
           top: -100%;
           left: -100%;
