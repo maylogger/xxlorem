@@ -1,37 +1,35 @@
 (($) ->
   `"use strict"`
 
-  ###
-    $('p').xxlorem()
-    $('p').xxlorem(3)
+  # $('p').xxlorem()
+  # $('p').xxlorem(3)
 
-    $('p').xxlorem('word')
-    $('p').xxlorem('words',10)
-    $('p').xxlorem(12,'w')
-    $('p').xxlorem('20w')
+  # $('p').xxlorem('word')
+  # $('p').xxlorem('words',10)
+  # $('p').xxlorem(12,'w')
+  # $('p').xxlorem('20w')
 
-    $('p').xxlorem('paragraph')
-    $('p').xxlorem('paragraphs',3)
-    $('p').xxlorem(5,'p')
-    $('p').xxlorem('2p')
-    $('p').xxlorem(3,'p','<br /><br />')
+  # $('p').xxlorem('paragraph')
+  # $('p').xxlorem('paragraphs',3)
+  # $('p').xxlorem(5,'p')
+  # $('p').xxlorem('2p')
+  # $('p').xxlorem(3,'p','<br /><br />')
 
-    $('p').xxlorem('name')
-    $('p').xxlorem('n')
-    $('p').xxlorem('first name')
-    $('p').xxlorem('fn')
-    $('p').xxlorem('last name')
-    $('p').xxlorem('ln')
-    $('p').xxlorem('name pinyin')
-    $('p').xxlorem('np')
-    $('p').xxlorem('first name pinyin')
-    $('p').xxlorem('fnp')
-    $('p').xxlorem('last name pinyin')
-    $('p').xxlorem('lnp')
-    $('p').xxlorem('email')
-    $('p').xxlorem('e')
-    $('p').xxlorem('m')
-  ###
+  # $('p').xxlorem('name')
+  # $('p').xxlorem('n')
+  # $('p').xxlorem('first name')
+  # $('p').xxlorem('fn')
+  # $('p').xxlorem('last name')
+  # $('p').xxlorem('ln')
+  # $('p').xxlorem('name pinyin')
+  # $('p').xxlorem('np')
+  # $('p').xxlorem('first name pinyin')
+  # $('p').xxlorem('fnp')
+  # $('p').xxlorem('last name pinyin')
+  # $('p').xxlorem('lnp')
+  # $('p').xxlorem('email')
+  # $('p').xxlorem('e')
+  # $('p').xxlorem('m')
 
   $.fn.xxlorem = (n,n2,option) ->
     _ = this
@@ -93,11 +91,11 @@
       return _.last_name() + _.first_name()
 
     _.first_name = ->
-      x = _.split '世 中 仁 伶 佩 佳 俊 信 倫 偉 傑 儀 元 冠 凱 君 哲 嘉 國 士 如 娟 婷 子 孟 宇 安 宏 宗 宜 家 建 弘 強 彥 彬 德 心 志 忠 怡 惠 慧 慶 憲 成 政 敏 文 昌 明 智 曉 柏 榮 欣 正 民 永 淑 玉 玲 珊 珍 珮 琪 瑋 瑜 瑞 瑩 盈 真 祥 秀 秋 穎 立 維 美 翔 翰 聖 育 良 芬 芳 英 菁 華 萍 蓉 裕 豪 貞 賢 郁 鈴 銘 雅 雯 霖 青 靜 韻 鴻 麗 龍'
-      return x[_.rand(x.length)] + (if _.rand(2) is 0 then "" else x[_.rand(x.length)])
+      x = _.split '水 貝 永 真 逸 文 世 中 仁 伶 佩 佳 俊 信 倫 偉 傑 儀 元 冠 凱 君 哲 嘉 國 士 如 娟 婷 子 孟 宇 安 宏 宗 宜 家 建 弘 強 彥 彬 德 心 志 忠 怡 惠 慧 慶 憲 成 政 敏 文 昌 明 智 曉 柏 榮 欣 正 民 永 淑 玉 玲 珊 珍 珮 琪 瑋 瑜 瑞 瑩 盈 真 祥 秀 秋 穎 立 維 美 翔 翰 聖 育 良 芬 芳 英 菁 華 萍 蓉 裕 豪 貞 賢 郁 鈴 銘 雅 雯 霖 青 靜 韻 鴻 麗 龍'
+      return x[_.rand(x.length)] + x[_.rand(x.length)]
 
     _.last_name = ->
-      x = _.split '李 王 張 劉 陳 楊 黃 趙 周 吳 徐 孫 朱 馬 胡 郭 林 何 高 梁 鄭 羅 宋 謝 唐 韓 曹 許 鄧 蕭 馮 曾 程 蔡 彭 潘 袁 於 董 餘 蘇 葉 呂 魏 蔣 田 杜 丁 沈 姜 範 江 傅 鐘 盧 汪 戴 崔 任 陸 廖 姚 方 金 邱 夏 譚 韋 賈 鄒 石 熊 孟 秦 閻 薛 侯 雷 白 龍 段 郝 孔 邵 史 毛 常 萬 顧 賴 武 康 賀 嚴 尹 錢 施 牛 洪 龔'
+      x = _.split '聶 轟 李 王 張 劉 陳 楊 黃 趙 周 吳 徐 孫 朱 馬 胡 郭 林 何 高 梁 鄭 羅 宋 謝 唐 韓 曹 許 鄧 蕭 馮 曾 程 蔡 彭 潘 袁 於 董 餘 蘇 葉 呂 魏 蔣 田 杜 丁 沈 姜 範 江 傅 鐘 盧 汪 戴 崔 任 陸 廖 姚 方 金 邱 夏 譚 韋 賈 鄒 石 熊 孟 秦 閻 薛 侯 雷 白 龍 段 郝 孔 邵 史 毛 常 萬 顧 賴 武 康 賀 嚴 尹 錢 施 牛 洪 龔'
       return x[_.rand(x.length)]
 
     _.name_pinyin = ->
@@ -105,7 +103,7 @@
 
     _.first_name_pinyin = ->
       x = _.split 'Lee Wang Chang Liu Cheng Yang Huang Zhao Zho Wu Schee Sun Zhu Ma Hu Guo Lin Ho Kao Liang Zheng Luo Sung Hsieh Tang Han Cao Xu Deng Xiao Feng Tseng Tsai Peng Pan Yuan Yu Tong Su Ye Lu Wei Jiang Tian Tu Ting Shen Jiang Fan Fu Zhong Lu Wang Dai Cui Ren Liao Yiao Fang Jin Qiu Xia Jia Chu Shi Xiong Meng Qin Yan Xue Ho Lei Bai Long Duan Hao Kong Shao Shi Mao Wan Gu Lai Kang He Yi Qian Niu Hung Gung'
-      return x[_.rand(x.length)] + (if _.rand(2) is 0 then "" else x[_.rand(x.length)].toLowerCase())
+      return x[_.rand(x.length)] + x[_.rand(x.length)]
 
     _.last_name_pinyin = ->
       x = _.split 'Li Wang Zhang Liu Chen Yang Huang Zhao Zhou Wu Xu Sun Zhu Ma Hu Guo Lin He Gao Liang Zheng Luo Song Xie Tang Han Cao Deng Xiao Feng Ceng Cheng Cai Peng Pan Yuan Dong Yu Su She Lu Wei Jiang Tian Du Ding Chenshen Fan Fu Zhong Lu Dai Cui Ren Liao Yao Fang Jin Qiu Jia Tan Gu Zou Dan Xiong Meng Qin Yan Xue Hou Lei Bai Long Duan Hao Kong Shao Shi Mao Chang Wan Lai Kang Yin Qian Niu Hong Gong'
