@@ -602,12 +602,17 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="javascripts/xxlorem.js"></script>
     <script>
+      var mouseY = undefined;
       $('#reload').bind('click', function() {
         $('.sample-title').xxlorem();
         $('.sample-content').xxlorem('3p', '<br><br>');
       });
       $('body').mousemove(function(e) {
         $('#cursor').css('left', e.pageX).css('top', e.pageY);
+        window.mouseY = e.clientY;
+      });
+      $(document).scroll(function(e) {
+        $('#cursor').css('top', mouseY + $('body').scrollTop());
       });
     </script>
 </html>
