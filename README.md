@@ -14,16 +14,17 @@
 ```
 
 XXLOREM.js 提供了兩種方法，讓你可以快速將假字套用到頁面中：
-- 方法一：以 jQuery 套用假字於特定物件上
-  ```
-  $('.example').xxlorem();
-  $('.example').xxlorem(3);
-  ```
-- 方法二：直接在想要填入假字的物件加上 `class="xx"`
-  ```
-  <p class="xx"></p>
-  <p class="xx(3)"></p>
-  ```
+方法一：以 jQuery 套用假字於特定物件上
+```
+$('.example').xxlorem();
+$('.example').xxlorem(3);
+```
+
+方法二：直接在想要填入假字的物件加上 `class="xx"`
+```
+<p class="xx"></p>
+<p class="xx(3)"></p>
+```
 
 
 ###參數設置
