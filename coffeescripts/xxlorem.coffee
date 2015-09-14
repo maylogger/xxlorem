@@ -3,35 +3,20 @@
 
   # $('p').xxlorem()
   # $('p').xxlorem(3)
+  # $('p').xxlorem(3,5)
   # $('p').xxlorem('3-5')
-  # $('p').xxlorem('3~5')
-  # $('p').xxlorem('3 5')
-
-  # $('p').xxlorem('word')
-  # $('p').xxlorem('words',10)
-  # $('p').xxlorem(12,'w')
+  # $('p').xxlorem('w')
   # $('p').xxlorem('20w')
-
-  # $('p').xxlorem('paragraph')
-  # $('p').xxlorem('paragraphs',3)
-  # $('p').xxlorem(5,'p')
+  # $('p').xxlorem('p')
   # $('p').xxlorem('2p')
-  # $('p').xxlorem(3,'p','<br /><br />')
-
-  # $('p').xxlorem('name')
+  # $('p').xxlorem('2-5','p')
+  # $('p').xxlorem('2p','<hr>')
   # $('p').xxlorem('n')
-  # $('p').xxlorem('first name')
   # $('p').xxlorem('fn')
-  # $('p').xxlorem('last name')
   # $('p').xxlorem('ln')
-  # $('p').xxlorem('name pinyin')
   # $('p').xxlorem('np')
-  # $('p').xxlorem('first name pinyin')
   # $('p').xxlorem('fnp')
-  # $('p').xxlorem('last name pinyin')
   # $('p').xxlorem('lnp')
-  # $('p').xxlorem('email')
-  # $('p').xxlorem('e')
   # $('p').xxlorem('m')
 
   $.fn.xxlorem = (n,n2,option) ->
@@ -222,7 +207,7 @@
     items = $('*[class*=xx]')
     items.each ->
       self = this
-      match = $(this).attr('class').match(/xx(?:\(([a-zA-Z0-9-~ ]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?/)
+      match = $(this).attr('class').match(/xx(?:[\(-_]([a-zA-Z0-9-_~ ]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?/)
 
       if match[1] and !match[2] and !match[3] then $(self).xxlorem(match[1])
       else if match[1] and match[2] and !match[3] then $(self).xxlorem(match[1], match[2])

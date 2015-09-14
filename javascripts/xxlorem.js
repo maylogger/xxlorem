@@ -288,7 +288,7 @@
         var match, self;
 
         self = this;
-        match = $(this).attr('class').match(/xx(?:\(([a-zA-Z0-9-~ ]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?/);
+        match = $(this).attr('class').match(/xx(?:[\(-_]([a-zA-Z0-9-_~ ]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?/);
         if (match[1] && !match[2] && !match[3]) {
           return $(self).xxlorem(match[1]);
         } else if (match[1] && match[2] && !match[3]) {

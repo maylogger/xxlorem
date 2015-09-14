@@ -193,33 +193,52 @@
                 方法一：以 jQuery 套用假字於特定物件上
               </h5>
               <div class="well well-sm">
+                <span class="label label-default">Javascript</span><br />
                 <code>
                   $(&#039;.example&#039;).xxlorem();
                 </code><br />
                 <code>
                   $(&#039;.example&#039;).xxlorem(3);
+                </code><br />
+                <code>
+                  $(&#039;.example&#039;).xxlorem('10w');
+                </code><br />
+                <code>
+                  $(&#039;.example&#039;).xxlorem(&#039;3-5&#039;,&#039;p&#039;);
                 </code>
               </div>
               <h5 id="method-2">
                 <span class="glyphicon glyphicon-fire"></span>
-                方法二：直接在想要填入假字的物件加上 <kbd>class="xx"</kbd>
+                方法二：直接在想要填入假字的物件加上 <mark>class="xx"</mark>
               </h5>
               <div class="well well-sm">
+                <span class="label label-default">Inline html</span><br />
                 <code>
                   &lt;p class=&quot;xx&quot;&gt;&lt;/p&gt;
                 </code><br />
                 <code>
                   &lt;p class=&quot;xx(3)&quot;&gt;&lt;/p&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(10w)&quot;&gt;&lt;/p&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx(3-5,p)&quot;&gt;&lt;/p&gt;
+                </code><br /><br />
+
+                <p class="help-block">
+                  注意：當你在使用像 <a href="http://slim-lang.com/" target="_blank">Slim</a> 這類的樣板語言編寫頁面時，可能無法以圓括號的方式添加參數，但是好家在，XXLOREM.js 兼容以「- (減號)」或「_ (底線)」作為參數的串接符號：
+                </p>
+                <code>
+                  &lt;p class=&quot;xx-5&quot;&gt;&lt;/p&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx_3_p&quot;&gt;&lt;/p&gt;
+                </code><br />
+                <code>
+                  &lt;p class=&quot;xx-name&quot;&gt;&lt;/p&gt;
                 </code>
               </div>
-
-              <hr />
-              <p>
-                以上兩種方法，都能填入假字，並可指定句子的產生數量，實際效果如下：
-                <blockquote>
-                  <p class="xx(3)"></p>
-                </blockquote>
-              </p>
             </div>
           </div>
 
@@ -240,7 +259,7 @@
                 <thead>
                   <tr>
                     <td class="text-center">類型</td>
-                    <td>參數語法</td>
+                    <td>參數名</td>
                     <td>簡寫</td>
                     <td>說明</td>
                   </tr>
@@ -370,15 +389,10 @@
               </table>
 
               <p>
-                在一般的狀態下，您只需使用到<strong>一個參數</strong>即可。
-              </p>
-              <p>
-                您可以僅使用一個參數，就完成設置假字的<strong>類型</strong>，或假字的<strong>長度</strong>。此外，您也可以用<strong>縮寫</strong>的方式，同時設置類型和長度，例如 <code>xx(3p)</code> 即代表生成三個段落的文字內容。
-              </p>
-              <p>
-                在設定非數值參數時，若您使用 jQuery 套用假字，參數需以單引號或雙引號括住；若是直接寫在 HTML 標籤中，則不需要使用引號，例如：
+                通常來說，只需用<strong>一個參數</strong>就可以完成設置假字的<strong>類型</strong>或<strong>長度 (or range)</strong>；或者，你也可以用<strong>縮寫</strong>的方式，同時設置假字類型和長度（例如 <code>xx(3p)</code> 會產生 3 個段落）：
               </p>
               <div class="well well-sm">
+                <span class="label label-default">Javascript</span><br />
                 <code>
                   $(elment).xxlorem(&#039;name&#039;);
                 </code><br />
@@ -386,54 +400,73 @@
                   $(elment).xxlorem(5);
                 </code><br />
                 <code>
+                  $(elment).xxlorem('10w');
+                </code><br /><br />
+
+                <span class="label label-default">Inline html</span><br />
+                <code>
                   &lt;span class=&quot;xx(email)&quot;&gt;&lt;/span&gt;
                 </code><br />
                 <code>
-                  &lt;span class=&quot;xx(last name)&quot;&gt;&lt;/span&gt;
+                  &lt;span class=&quot;xx(lnp)&quot;&gt;&lt;/span&gt;
                 </code><br />
                 <code>
                   &lt;span class=&quot;xx(3p)&quot;&gt;&lt;/span&gt;
                 </code>
+                <p class="help-block">
+                  注意：直接寫在 HTML 標籤中，參數前後不需 &#039; 或 &quot; 引號！
+                </p>
               </div>
 
               <p>
-                當你在設定多個文字、句子、段落時，則可以使用到<strong>兩個參數</strong>，分別為假字<strong>類型</strong>和<strong>長度</strong>。請以半形逗號隔開不同參數，參數的順序將不影響結果；若直接寫在 HTML 標籤時，逗號前後不能含有空白：
+                當你要需要<u>產生多個文字、句子或段落</u>時，則可以使用 <strong>2 個參數</strong>來設置假字<strong>類型</strong>和<strong>長度 (or range)</strong>，請以逗號隔開參數，<mark>參數順序不影響結果</mark>：
               </p>
               <div class="well well-sm">
+                <span class="label label-default">Javascript</span><br />
                 <code>
                   $(elment).xxlorem(&#039;sentences&#039;, 10);
                 </code><br />
                 <code>
-                  $(elment).xxlorem(5, &#039;paragraphs&#039;);
-                </code><br />
+                  $(elment).xxlorem('3-5', &#039;p&#039;);
+                </code><br /><br />
+                <span class="label label-default">Inline html</span><br />
                 <code>
-                  &lt;span class=&quot;xx(words,19)&quot;&gt;&lt;/span&gt;
+                  &lt;span class=&quot;xx(words,10-20)&quot;&gt;&lt;/span&gt;
                 </code><br />
                 <code>
                   &lt;p class=&quot;xx(3,p)&quot;&gt;&lt;/p&gt;
                 </code>
+                <p class="help-block">
+                  注意：直接寫在 HTML 標籤時，逗號前後請勿留空白符號！
+                </p>
               </div>
               <p>
-                在產生段落 <small>(paragraphs)</small> 時，你將可彈性的使用<strong>第三個參數</strong>。
+                在產生段落 <small>(paragraphs)</small> 時，可彈性的使用<strong>第三個參數</strong>。
               </p>
               <p>
-                第三個參數為設置段落時，允許改變換行符號，預設的換行符號為 <code>\n\n</code>，您可以替換為其它的符號，例如 <code>&lt;br&gt;&lt;br&gt;</code> 或 <code>&lt;hr&gt;</code>：
+                第三個參數為設置換行符號，預設的換行符號為 <code>\n\n</code>，可依照需求替換，例如：
               </p>
               <div class="well well-sm">
+                <span class="label label-default">Javascript</span><br />
                 <code>
-                  $(elment).xxlorem(3, &#039;paragraphs&#039;, &#039;&lt;br&gt;&lt;br&gt;&#039;);
-                </code><br />
+                  $(elment).xxlorem('3-5', &#039;paragraphs&#039;, &#039;&lt;br&gt;&lt;br&gt;&#039;);
+                </code><br /><br />
+
+                <span class="label label-default">Inline html</span><br />
                 <code>
-                  &lt;p class=&quot;xx(6,p,&lt;hr&gt;)&quot;&gt;&lt;/p&gt;
+                  &lt;p class=&quot;xx(3-5,p,&lt;hr&gt;)&quot;&gt;&lt;/p&gt;
                 </code>
               </div>
               <p>
-                雖然如此，但我們建議以縮寫、僅使用兩個參數的方式，來設置段落：
+                除非要產生隨機長度的假字，否則我們建議以縮寫、僅使用兩個參數的方式設置段落：
               </p>
               <div class="well well-sm">
+                <span class="label label-default">Javascript</span><br />
                 <code>
                   $(elment).xxlorem(&#039;3p&#039;, &#039;&lt;br&gt;&lt;br&gt;&#039;);
-                </code><br />
+                </code><br /><br />
+
+                <span class="label label-default">Inline html</span><br />
                 <code>
                   &lt;p class=&quot;xx(6p,&lt;hr&gt;)&quot;&gt;&lt;/p&gt;
                 </code>
@@ -451,16 +484,16 @@
               <h4>給我 1 個中文字：</h4>
               <div class="well well-sm">
                 <span class="label label-danger">Preview</span><br />
-                <p class="text-center xx(word)"></p>
+                <p class="text-center xx(w)"></p>
               </div>
               <div class="well well-sm">
                 <span class="label label-success">Code</span>
                 <code>
-                  &lt;p class=&quot;xx(word)&quot;&gt;&lt;/p&gt;
+                  &lt;p class=&quot;xx(w)&quot;&gt;&lt;/p&gt;
                 </code>
               </div>
               <p class="help-block">
-                你也可以這樣寫：<samp>xx(w)</samp>、<samp>xx(1w)</samp>、<samp>xx(1 word)</samp>
+                你也可以這樣寫：<samp>xx(word)</samp>、<samp>xx(1 word)</samp>
               </p>
               <hr />
 
@@ -508,7 +541,7 @@
                 </code>
               </div>
               <p class="help-block">
-                你也可以這樣寫：<samp>xx(sentence)</samp>、<samp>xx(1)</samp>、<samp>xx(s)</samp>、<samp>xx(1s)</samp>
+                你也可以這樣寫：<samp>xx(sentence)</samp>、<samp>xx(1)</samp>、<samp>xx(s)</samp>
               </p>
               <hr />
 
@@ -524,7 +557,7 @@
                 </code>
               </div>
               <p class="help-block">
-                你也可以這樣寫：<samp>xx(sentences,3)</samp>、<samp>xx(3,s)</samp>、<samp>xx(3-sentences)</samp>
+                你也可以這樣寫：<samp>xx(3 sentences)</samp>
               </p>
               <hr />
 
@@ -556,7 +589,7 @@
                 </code>
               </div>
               <p class="help-block">
-                你也可以這樣寫：<samp>xx(paragraph)</samp>、<samp>xx(1p)</samp>
+                你也可以這樣寫：<samp>xx(paragraph)</samp>
               </p>
               <hr />
 
@@ -572,7 +605,7 @@
                 </code>
               </div>
               <p class="help-block">
-                你也可以這樣寫：<samp>xx(3,p,&lt;br&gt;&lt;br&gt;)</samp>、<samp>xx(paragraphs,3,&lt;br&gt;&lt;br&gt;)</samp>
+                你也可以這樣寫：<samp>xx(3 paragraphs,&lt;br&gt;&lt;br&gt;)</samp>
               </p>
               <hr />
 
