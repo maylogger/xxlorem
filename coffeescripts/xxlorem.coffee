@@ -207,7 +207,7 @@
     items = $('*[class*=xx]')
     items.each ->
       self = this
-      match = $(this).attr('class').match(/xx(?:[\(-_]([a-zA-Z0-9-_~ ]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?/)
+      match = $(this).attr('class').match(/xx(?:[\(-_]([a-zA-Z0-9-_~]*)(?:,([a-zA-Z0-9-~<>\/ ]*))?(?:,([a-zA-Z0-9<>\/ ]*))?)?[\) ]?/)
 
       if match[1] and !match[2] and !match[3] then $(self).xxlorem(match[1])
       else if match[1] and match[2] and !match[3] then $(self).xxlorem(match[1], match[2])
